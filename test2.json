@@ -1,0 +1,78 @@
+{
+  "type": "index", 
+  "spec": {
+    "dataSchema": {
+      "metricsSpec": [
+        {
+          "type": "count", 
+          "name": "count"
+        }
+      ], 
+      "granularitySpec": {
+        "queryGranularity": "none", 
+        "segmentGranularity": "day", 
+        "type": "uniform", 
+        "intervals": [
+          "2000-01-01/2018-12-31"
+        ]
+      }, 
+      "parser": {
+        "parseSpec": {
+          "dimensionsSpec": {
+            "dimensions": [
+              "States", 
+              "Testtt", 
+              "District", 
+              "Cities", 
+              {
+                "type": "float", 
+                "name": "Latitude"
+              }, 
+              {
+                "type": "float", 
+                "name": "Longitude"
+              }, 
+              {
+                "type": "long", 
+                "name": "Sample_Population"
+              }
+            ]
+          }, 
+          "timestampSpec": {
+            "column": "Date"
+          }, 
+          "columns": [
+            "States", 
+            "District", 
+            "Cities", 
+            "Latitude", 
+            "Longitude", 
+            "Sample_Population", 
+            "Date", 
+            "ISO", 
+            "testtt"
+          ], 
+          "format": "csv"
+        }, 
+        "type": "string"
+      }, 
+      "dataSource": "wan0919"
+    }, 
+    "tuningConfig": {
+      "jobProperties": {}, 
+      "type": "index", 
+      "partitionsSpec": {
+        "type": "hashed", 
+        "targetPartitionSize": 5000000
+      }
+    }, 
+    "ioConfig": {
+      "firehose": {
+        "filter": "states_district_cities1.csv", 
+        "baseDir": "data/wan0919", 
+        "type": "local"
+      }, 
+      "type": "index"
+    }
+  }
+}
